@@ -4,6 +4,7 @@
   "description": "CLI Tool for managing snippets base",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier",
