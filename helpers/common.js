@@ -10,6 +10,10 @@ const always = curry((a, b) => a);
 const compose = (...fns) => (...args) =>
   fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
+// pipe :: ((a -> b), (b -> c),  ..., (y -> z)) -> a -> z
+const pipe = (...fns) => (...args) =>
+  fns.reduce((res, fn) => [fn.call(null, ...res)], args)[0];
+
 // curry :: ((a, b, ...) -> c) -> a -> b -> ... -> c
 function curry(fn) {
   const arity = fn.length;
@@ -639,3 +643,4 @@ exports.toString = toString;
 exports.toUpperCase = toUpperCase;
 exports.traverse = traverse;
 exports.unsafePerformIO = unsafePerformIO;
+exports.pipe = pipe;
