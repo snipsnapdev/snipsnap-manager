@@ -35,35 +35,40 @@ const namespaceSnippets = map(({ name, snippets }) => ({
 }));
 
 // standart node https request wrapped in a promise
-// getLibrarySnippets(lib: String, url: String ) -> Promise
-const getLibrarySnippets = (libName, url) =>
-  new Promise((resolve, reject) =>
-    https
-      .get(url, (resp) => {
-        let data = '';
+// getLibrarySnippets(lib: String, sources: Array ) -> Promise
+const getLibrarySnippets = (libName, sources) =>
+  Promise.all(
+    sources.map(
+      (url) =>
+        new Promise((resolve, reject) =>
+          https
+            .get(url, (resp) => {
+              let data = '';
 
-        // A chunk of data has been recieved.
-        resp.on('data', (chunk) => {
-          data += chunk;
-        });
+              // A chunk of data has been recieved.
+              resp.on('data', (chunk) => {
+                data += chunk;
+              });
 
-        // The whole response has been received. Print out the result.
-        resp.on('end', () => 
-          resolve({
-            name: libName,
-            snippets: JSON.parse(data),
-          });
-        );
-      })
-      .on('error', (err) => reject(`Error: ${err.message}`))
+              // The whole response has been received. Print out the result.
+              resp.on('end', () => resolve(JSON.parse(data)));
+            })
+            .on('error', (err) => reject(`Error: ${err.message}`))
+        )
+    )
+  ).then((values) =>
+    Promise.resolve({
+      name: libName,
+      snippets: values.reduce((acc, cur) => ({ ...acc, ...cur }), {}),
+    })
   );
 
 // same as above but handles batch requests
 // getAllLibrarySnippets(processEntryFn: Function) -> (libraries: Array) -> Promise
 const getAllLibrarySnippets = ((processEntryFn) => (libraries) =>
   Promise.all(
-    libraries.map(({ name, snippetsLink }) =>
-      processEntryFn(name, snippetsLink)
+    libraries.map(({ name, snippetSource }) =>
+      processEntryFn(name, snippetSource)
     )
   ))(getLibrarySnippets);
 

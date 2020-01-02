@@ -6,6 +6,7 @@ const {
   writeFile,
   composeSnippets,
   namespaceSnippets,
+  trace,
 } = require('./helpers/local');
 
 // helpers
@@ -13,7 +14,7 @@ const writeOutput = writeFile(`${__dirname}/output.json`);
 
 const main = () =>
   getAllLibrarySnippets(snipsnapLibsCollection).then(
-    pipe(namespaceSnippets, composeSnippets, writeOutput)
+    pipe(trace('Before all'), namespaceSnippets, composeSnippets, writeOutput)
   );
 
 // initiate snippets processing
