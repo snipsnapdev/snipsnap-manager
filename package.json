@@ -1,0 +1,32 @@
+{
+  "name": "snipsnap-manager",
+  "version": "0.0.1",
+  "description": "CLI Tool for managing snippets base",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier",
+    "format:fix": "prettier --write **/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixel-point/snipsnap-manager.git"
+  },
+  "keywords": [],
+  "author": "Pixel Point",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pixel-point/snipsnap-manager/issues"
+  },
+  "homepage": "https://github.com/pixel-point/snipsnap-manager#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jest": "^23.2.0",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {}
+}
