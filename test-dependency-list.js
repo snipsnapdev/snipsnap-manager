@@ -5,6 +5,7 @@ const snipsnapLibsCollection = [
     snippetSource: [
       'https://raw.githubusercontent.com/dsznajder/vscode-es7-javascript-react-snippets/master/snippets/snippets.json',
     ],
+    scope: 'javascript, javascriptreact',
   },
   {
     name: 'typescriptreact',
@@ -12,6 +13,7 @@ const snipsnapLibsCollection = [
     snippetSource: [
       'https://raw.githubusercontent.com/dsznajder/vscode-es7-javascript-react-snippets/master/snippets/ts-snippets.json',
     ],
+    scope: 'typescript, typescriptreact',
   },
   {
     name: 'javascript',
@@ -19,6 +21,7 @@ const snipsnapLibsCollection = [
     snippetSource: [
       'https://raw.githubusercontent.com/dsznajder/vscode-es7-javascript-react-snippets/master/snippets/snippets.json',
     ],
+    scope: 'javascript',
   },
   {
     name: 'angular',
@@ -27,9 +30,9 @@ const snipsnapLibsCollection = [
       'https://raw.githubusercontent.com/johnpapa/vscode-angular-snippets/master/snippets/dockerfile.json',
       'https://raw.githubusercontent.com/johnpapa/vscode-angular-snippets/master/snippets/html.json',
       'https://raw.githubusercontent.com/johnpapa/vscode-angular-snippets/master/snippets/javascript.json',
-      'https://raw.githubusercontent.com/johnpapa/vscode-angular-snippets/master/snippets/jsonc.json',
       'https://raw.githubusercontent.com/johnpapa/vscode-angular-snippets/master/snippets/typescript.json',
     ],
+    scope: 'javascript, html, jsonc, dockerfile',
   },
 ];
 
