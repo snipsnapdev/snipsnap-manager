@@ -1,15 +1,15 @@
 // snipsnap library collection
 const snipsnapLibsCollection = require('./test-dependency-list');
-const { pipe } = require('./helpers/common');
+const { pipe, forEach } = require('./helpers/common');
 const {
   getAllLibrarySnippets,
-  writeFile,
+  writeSnippetFile,
   composeSnippets,
   namespaceSnippets,
 } = require('./helpers/local');
 
 // helpers
-const writeOutput = writeFile(`${__dirname}/output.json`);
+const writeOutput = forEach(writeSnippetFile);
 
 const main = () =>
   getAllLibrarySnippets(snipsnapLibsCollection).then(

@@ -100,15 +100,30 @@ const getAllLibrarySnippets = ((processEntryFn) => (libraries) =>
     )
   ))(getLibrarySnippets);
 
+// cuts the last part of a path, e.g. some/dir/file.txt -> some/dir
+// cutLastPathPart(path: String) -> String
+const cutLastPathPart = (path) =>
+  path
+    .split('/')
+    .slice(0, -1)
+    .join('/');
+
 // writes data to a file using node fs module w/ promise
 // writeFile(path: String) -> (data: Any) -> Promise
-const writeFile = (path) => (data) =>
-  fsPromises.writeFile(path, JSON.stringify(data));
+const writeSnippetFile = ({ name, snippets }) => {
+  const path = `${cutLastPathPart(__dirname)}/snippets-output/${name}`;
+  return fsPromises
+    .mkdir(path, { recursive: true })
+    .then(() =>
+      fsPromises.writeFile(`${path}/${name}.json`, JSON.stringify(snippets))
+    );
+};
 
 module.exports = {
   trace,
   getAllLibrarySnippets,
-  writeFile,
+  writeSnippetFile,
   composeSnippets,
   namespaceSnippets,
+  cutLastPathPart,
 };

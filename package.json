@@ -4,11 +4,12 @@
   "description": "CLI Tool for managing snippets base",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "npm run purge && node ./index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier",
-    "format:fix": "prettier --write **/**.js"
+    "format:fix": "prettier --write **/**.js",
+    "purge": "rimraf ./snippets-output/*"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,7 @@
     "eslint-plugin-jest": "^23.2.0",
     "prettier": "^1.19.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "rimraf": "^3.0.0"
+  }
 }
